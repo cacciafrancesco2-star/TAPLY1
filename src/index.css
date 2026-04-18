@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-primary: #2563EB;
+    --brand-secondary: #FBBF24;
+    --brand-accent: #F59E0B;
+    --brand-bg: #FFF9E5;
+    --brand-muted: #64748B;
+    --brand-border: #f1efde;
+    --brand-locked: #CBD5E1;
+    --brand-primary-dark: #1e40af;
+    --text-main: #0f172a;
+    --bg-card: #ffffff;
+  }
+
+  .theme-dark {
+    --brand-primary: #3B82F6;
+    --brand-secondary: #FBBF24;
+    --brand-accent: #F59E0B;
+    --brand-bg: #0F172A;
+    --brand-muted: #94A3B8;
+    --brand-border: #1E293B;
+    --brand-locked: #1E293B;
+    --brand-primary-dark: #1d4ed8;
+    --text-main: #f8fafc;
+    --bg-card: #1e293b;
+  }
+
+  .theme-warm {
+    --brand-primary: #EA580C;
+    --brand-secondary: #FDE047;
+    --brand-accent: #F97316;
+    --brand-bg: #FFF7ED;
+    --brand-muted: #9A3412;
+    --brand-border: #Fed7aa;
+    --brand-locked: #FED7AA;
+    --brand-primary-dark: #9a3412;
+    --text-main: #431407;
+    --bg-card: #ffffff;
+  }
+
+  .theme-high-contrast {
+    --brand-primary: #000000;
+    --brand-secondary: #FFFF00;
+    --brand-accent: #000000;
+    --brand-bg: #FFFFFF;
+    --brand-muted: #000000;
+    --brand-border: #000000;
+    --brand-locked: #CCCCCC;
+    --brand-primary-dark: #000000;
+    --text-main: #000000;
+    --bg-card: #FFFFFF;
+  }
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-border: var(--brand-border);
+  --color-brand-locked: var(--brand-locked);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-text-main: var(--text-main);
+  --color-bg-card: var(--bg-card);
+  
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-text-main font-sans;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+.glass {
+  @apply bg-bg-card border-b border-brand-border;
+}
+
+.btn-primary {
+  @apply bg-brand-primary text-white font-black uppercase tracking-widest py-4 px-8 rounded-2xl shadow-lg shadow-brand-primary/20 border-b-4 border-brand-primary-dark active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply bg-bg-card text-brand-primary font-black uppercase tracking-widest py-4 px-8 rounded-2xl border-2 border-brand-primary border-b-4 border-brand-primary active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+}
+
+/* Custom scrollbar for mobile feel */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+  }
+
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+
+  .text-size-s { font-size: 0.875rem; }
+  .text-size-m { font-size: 1rem; }
+  .text-size-l { font-size: 1.125rem; }
+  .text-size-xl { font-size: 1.25rem; }
+  .text-size-xxl { font-size: 1.5rem; }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  display: block;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #CBD5E1;
+}
+
+
+
