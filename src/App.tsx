@@ -43,7 +43,7 @@ const INITIAL_STATE: AppState = {
 };
 
 export default function App() {
-  const [state, setState] = useLocalStorage<AppState>('taply_v7_final_responsive', INITIAL_STATE);
+  const [state, setState] = useLocalStorage<AppState>('taply_v8_reboot_intro', INITIAL_STATE);
   const [activeTab, setActiveTab] = useState('home');
   const [selectedTopic, setSelectedTopic] = useState<any | null>(null);
   const [activeLesson, setActiveLesson] = useState<any | null>(null);
@@ -62,7 +62,7 @@ export default function App() {
         lastSelectedTopicId: prev.lastSelectedTopicId !== undefined ? prev.lastSelectedTopicId : null,
         settings: {
           ...prev.settings,
-          allowSkipping: prev.settings?.allowSkipping ?? false
+          allowSkipping: prev.settings?.allowSkipping ?? true
         }
       }));
     }
@@ -150,11 +150,6 @@ export default function App() {
     );
 
     if (hasUncompletedPreceding) {
-      if (!state.settings.allowSkipping) {
-        alert(`Il modulo "${topic.title}" è bloccato. Completa prima i moduli precedenti.`);
-        return;
-      }
-      
       const confirmSkip = window.confirm(`Il modulo "${topic.title}" è bloccato. Vuoi saltare gli argomenti precedenti per sbloccarlo subito?`);
       if (confirmSkip) {
         const allPrecedingLessonIds = precedingTopics.flatMap(t => t.lessons.map(l => l.id));
@@ -185,11 +180,6 @@ export default function App() {
       const hasUncompletedPreceding = precedingLessons.some(l => !state.completedLessons.includes(l.id));
 
       if (hasUncompletedPreceding && !isResuming) {
-        if (!state.settings.allowSkipping) {
-          alert(`La lezione "${lesson.title}" è bloccata. Completa prima i passaggi precedenti.`);
-          return;
-        }
-
         const confirmSkip = window.confirm(`La lezione "${lesson.title}" è bloccata. Vuoi saltare i passaggi precedenti di questo modulo per iniziarla subito?`);
         if (confirmSkip) {
           const precedingLessonIds = precedingLessons.map(l => l.id);

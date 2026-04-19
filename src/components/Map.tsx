@@ -91,20 +91,41 @@ export default function Map({ topics, onTopicClick }: MapProps) {
         </motion.div>
       </div>
 
-      {/* The Central Path (Winding Road) */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-48 sm:w-64 bg-[#F0D9B5] -z-10 shadow-inner" />
-      
-      {/* Connection Dashed Line */}
-      <div className="absolute inset-0 z-[5] pointer-events-none flex justify-center">
-        <svg className="w-full h-full max-w-sm sm:max-w-none" viewBox="0 0 400 5000" preserveAspectRatio="none">
+      {/* The Central Path (Wavy Sentiero) */}
+      <div className="absolute inset-0 -z-10 flex justify-center pointer-events-none">
+        <svg className="w-full h-full max-w-sm sm:max-w-none" viewBox="0 0 400 3000" preserveAspectRatio="none">
+          {/* Main White Path Background (The Sentiero) */}
           <path 
-            d="M200,0 C200,100 150,200 150,400 C150,600 250,800 250,1100 C250,1400 150,1700 150,2000 C150,2300 250,2600 250,2900 C250,3200 150,3500 150,3800 C150,4100 250,4400 250,4700" 
+            d="M200,0 C200,150 160,250 160,500 C160,750 240,850 240,1100 C240,1350 160,1550 160,1800 C160,2050 240,2250 240,2500 C240,2750 200,2900 200,3000" 
             fill="none" 
-            stroke="#C4A47C" 
+            stroke="#FFFFFF" 
+            strokeWidth="340" 
+            strokeLinecap="round"
+            className="opacity-100"
+          />
+          {/* Subtle Depth Shadow for the Path */}
+          <path 
+            d="M200,0 C200,150 160,250 160,500 C160,750 240,850 240,1100 C240,1350 160,1550 160,1800 C160,2050 240,2250 240,2500 C240,2750 200,2900 200,3000" 
+            fill="none" 
+            stroke="#D1B894" 
+            strokeWidth="360" 
+            strokeLinecap="round"
+            className="opacity-10"
+          />
+        </svg>
+      </div>
+      
+      {/* Connection Dashed Line (Inside the Wavy Path) */}
+      <div className="absolute inset-0 z-[5] pointer-events-none flex justify-center">
+        <svg className="w-full h-full max-w-sm sm:max-w-none" viewBox="0 0 400 3000" preserveAspectRatio="none">
+          <path 
+            d="M200,0 C200,150 160,250 160,500 C160,750 240,850 240,1100 C240,1350 160,1550 160,1800 C160,2050 240,2250 240,2500 C240,2750 200,2900 200,3000" 
+            fill="none" 
+            stroke="#D1B894" 
             strokeWidth="12" 
             strokeDasharray="16 12" 
             strokeLinecap="round"
-            className="opacity-40"
+            className="opacity-60"
           />
         </svg>
       </div>
@@ -123,7 +144,7 @@ export default function Map({ topics, onTopicClick }: MapProps) {
               viewport={{ once: true, margin: "-100px" }}
               className={cn(
                 "relative flex flex-col items-center",
-                index === 0 ? "" : (index % 2 === 1 ? "translate-x-[-50px]" : "translate-x-[50px]")
+                index === 0 ? "" : (index % 2 === 1 ? "translate-x-[-40px] sm:translate-x-[-50px]" : "translate-x-[40px] sm:translate-x-[50px]")
               )}
             >
               {/* Shield/Crest Node */}

@@ -143,5 +143,5 @@ export const INITIAL_SETTINGS = {
   soundVolume: 80,
   notifications: true,
   language: 'IT' as const,
-  allowSkipping: false,
+  allowSkipping: true,
 };

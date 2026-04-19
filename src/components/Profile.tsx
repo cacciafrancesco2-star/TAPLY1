@@ -114,7 +114,7 @@ export default function Profile({ state, onUpdateSettings, onUpdateUser }: Profi
       </div>
 
       {/* Settings Sections */}
-      <div className="space-y-6">
+      <div className="space-y-6 mb-8">
         <section>
           <h3 className="text-xl mb-4 ml-2 flex items-center gap-2 font-display font-black uppercase italic tracking-tighter text-text-main">
             <Settings className="w-5 h-5 text-brand-primary" />
@@ -233,7 +233,7 @@ export default function Profile({ state, onUpdateSettings, onUpdateUser }: Profi
             </div>
 
             {/* Notifications */}
-            <div className="p-6 flex items-center justify-between border-b border-brand-bg">
+            <div className="p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Bell className="w-5 h-5 text-brand-primary" />
                 <span className="font-black uppercase tracking-widest text-xs text-brand-muted">Notifiche</span>
@@ -251,39 +251,20 @@ export default function Profile({ state, onUpdateSettings, onUpdateUser }: Profi
                 )} />
               </button>
             </div>
-
-            {/* Skipping Content */}
-            <div className="p-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Globe className="w-5 h-5 text-brand-primary" />
-                <span className="font-black uppercase tracking-widest text-xs text-brand-muted">Permetti di saltare</span>
-              </div>
-              <button 
-                onClick={() => onUpdateSettings({ allowSkipping: !settings.allowSkipping })}
-                className={cn(
-                  "w-16 h-9 rounded-full transition-all relative p-1 border-b-4",
-                  settings.allowSkipping ? "bg-brand-primary border-blue-800" : "bg-brand-bg border-brand-border"
-                )}
-              >
-                <div className={cn(
-                  "w-6 h-6 bg-white rounded-full transition-all shadow-lg",
-                  settings.allowSkipping ? "translate-x-7" : "translate-x-0"
-                )} />
-              </button>
-            </div>
           </div>
         </section>
+      </div>
 
-        <section className="pt-4">
-          <button className="w-full p-6 bg-red-50 text-red-500 rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 active:scale-95 transition-all border-b-4 border-red-100">
-            <LogOut className="w-5 h-5" />
-            Esci dall'account
-          </button>
-          <button className="w-full p-6 mt-4 text-brand-muted/30 font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-            <Trash2 className="w-5 h-5" />
-            Elimina account
-          </button>
-        </section>
+      {/* Account Management */}
+      <div className="space-y-4">
+        <button className="w-full p-6 bg-red-50 text-red-500 rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 active:scale-95 transition-all border-b-4 border-red-100">
+          <LogOut className="w-5 h-5" />
+          Esci dall'account
+        </button>
+        <button className="w-full p-6 text-brand-muted/30 font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 active:scale-95 transition-all">
+          <Trash2 className="w-5 h-5" />
+          Elimina account
+        </button>
       </div>
       {/* Avatar Picker Modal */}
       <AnimatePresence>

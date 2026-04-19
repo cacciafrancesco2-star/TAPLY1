@@ -50,14 +50,35 @@ export default function TopicDrawer({ topic, completedLessons, onClose, onStartL
               <div className="absolute bottom-[10%] left-[20%] text-6xl">🏡</div>
             </div>
 
-            {/* Central Path */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-48 sm:w-64 bg-[#F0D9B5]/40 -z-10 shadow-inner" />
+            {/* The Central Path (Wavy Sentiero) */}
+            <div className="absolute inset-0 -z-10 flex justify-center pointer-events-none">
+              <svg className="w-full h-full max-w-sm sm:max-w-none" viewBox="0 0 400 3000" preserveAspectRatio="none">
+                {/* Main White Path Background (The Sentiero) */}
+                <path 
+                  d="M200,0 C200,150 170,250 170,400 C170,550 230,650 230,800 C230,950 170,1050 170,1200 C170,1350 230,1450 230,1600 C230,1750 170,1850 170,2000 C170,2150 230,2250 230,2400 C230,2550 200,2700 200,3000" 
+                  fill="none" 
+                  stroke="#FFFFFF" 
+                  strokeWidth="320" 
+                  strokeLinecap="round"
+                  className="opacity-40"
+                />
+                {/* Subtle Depth Shadow */}
+                <path 
+                  d="M200,0 C200,150 170,250 170,400 C170,550 230,650 230,800 C230,950 170,1050 170,1200 C170,1350 230,1450 230,1600 C230,1750 170,1850 170,2000 C170,2150 230,2250 230,2400 C230,2550 200,2700 200,3000" 
+                  fill="none" 
+                  stroke="#D1B894" 
+                  strokeWidth="340" 
+                  strokeLinecap="round"
+                  className="opacity-5"
+                />
+              </svg>
+            </div>
 
-            {/* Zig-zag Connections */}
+            {/* Connection Dashed Line (Inside the Wavy Path) */}
             <div className="absolute inset-0 z-[5] pointer-events-none flex justify-center opacity-30">
               <svg className="w-full h-full max-w-sm sm:max-w-none" viewBox="0 0 400 3000" preserveAspectRatio="none">
                 <path 
-                  d="M200,0 C200,100 160,200 160,400 C160,600 240,800 240,1100 C240,1400 160,1700 160,2000 C160,2300 240,2600 240,2900" 
+                  d="M200,0 C200,150 170,250 170,400 C170,550 230,650 230,800 C230,950 170,1050 170,1200 C170,1350 230,1450 230,1600 C230,1750 170,1850 170,2000 C170,2150 230,2250 230,2400 C230,2550 200,2700 200,3000" 
                   fill="none" 
                   stroke="#D1B894" 
                   strokeWidth="12" 
@@ -73,7 +94,6 @@ export default function TopicDrawer({ topic, completedLessons, onClose, onStartL
                 const nextLessonIndex = topic.lessons.findIndex(l => !completedLessons.includes(l.id));
                 
                 return topic.lessons.map((lesson, index) => {
-                  const isEven = index % 2 === 0;
                   const isCompleted = completedLessons.includes(lesson.id);
                   const isLocked = topic.status === 'locked' || (index > 0 && !completedLessons.includes(topic.lessons[index-1].id));
                   const isNext = index === nextLessonIndex;
@@ -86,7 +106,7 @@ export default function TopicDrawer({ topic, completedLessons, onClose, onStartL
                       viewport={{ once: true }}
                       className={cn(
                         "relative flex flex-col items-center",
-                        index === 0 ? "" : (index % 2 === 1 ? "translate-x-[-40px] sm:translate-x-[-40px]" : "translate-x-[40px] sm:translate-x-[40px]")
+                        index === 0 ? "" : (index % 2 === 1 ? "translate-x-[-30px] sm:translate-x-[-40px]" : "translate-x-[30px] sm:translate-x-[40px]")
                       )}
                     >
                       <button
